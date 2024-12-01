@@ -216,7 +216,7 @@ resource "aws_route_table_association" "public-eu-west-2b" {
 #-----------------------------------------------#
 # Private Network
 
-/*
+
 resource "aws_route_table" "private_London" {
   vpc_id = aws_vpc.VPC-C-London-Test.id
   provider = aws.london
@@ -224,7 +224,7 @@ resource "aws_route_table" "private_London" {
   
   route  {
       cidr_block                 = "0.0.0.0/0"
-      nat_gateway_id             = aws_nat_gateway.nat.id
+      nat_gateway_id             = aws_nat_gateway.nat_LONDON.id
       carrier_gateway_id         = ""
       destination_prefix_list_id = ""
       egress_only_gateway_id     = ""
@@ -257,15 +257,6 @@ resource "aws_route_table_association" "private-eu-west-2b" {
   route_table_id = aws_route_table.private_London.id
   provider = aws.london
 }
-
-*/
-
-
-
-
-
-
-
 
 
 #-----------------------------------------------#
@@ -317,7 +308,7 @@ resource "aws_route_table_association" "public-sa-east-1b" {
 #-----------------------------------------------#
 # Private Network
 
-/*
+
 resource "aws_route_table" "private_SaoPaulo" {
   vpc_id = aws_vpc.VPC-D-SaoPaolo-Test.id
   provider = aws.saopaulo
@@ -325,7 +316,7 @@ resource "aws_route_table" "private_SaoPaulo" {
   
   route  {
       cidr_block                 = "0.0.0.0/0"
-      nat_gateway_id             = aws_nat_gateway.nat.id
+      nat_gateway_id             = aws_nat_gateway.nat_SaoPaulo.id
       carrier_gateway_id         = ""
       destination_prefix_list_id = ""
       egress_only_gateway_id     = ""
@@ -354,12 +345,12 @@ resource "aws_route_table_association" "private-sa-east-1a" {
 }
 
 resource "aws_route_table_association" "private-sa-east-1b" {
-  subnet_id      = aws_subnet.private-eu-west-2b.id
+  subnet_id      = aws_subnet.private-sa-east-1b.id
   route_table_id = aws_route_table.private_SaoPaulo.id
   provider = aws.saopaulo
 }
 
-*/
+
 
 
 #-----------------------------------------------#
@@ -411,16 +402,15 @@ resource "aws_route_table_association" "public-ap-southeast-2b" {
 #-----------------------------------------------#
 # Private Network
 
-/*
 
-resource "aws_route_table" "private_London" {
-  vpc_id = aws_vpc.VPC-C-London-Test.id
+
+resource "aws_route_table" "private_Australia" {
+  vpc_id = aws_vpc.VPC-E-Australia-Test.id
   provider = aws.australia
-  
   
   route  {
       cidr_block                 = "0.0.0.0/0"
-      nat_gateway_id             = aws_nat_gateway.nat.id
+      nat_gateway_id             = aws_nat_gateway.nat_Australia.id
       carrier_gateway_id         = ""
       destination_prefix_list_id = ""
       egress_only_gateway_id     = ""
@@ -448,14 +438,13 @@ resource "aws_route_table_association" "private-ap-southeast-2a" {
   provider = aws.australia
 }
 
-resource "aws_route_table_association" "private-eu-west-2b" {
+resource "aws_route_table_association" "private-ap-southeast-2b" {
   subnet_id      = aws_subnet.private-ap-southeast-2b.id
   route_table_id = aws_route_table.private_Australia.id
   provider = aws.australia
 }
 
-*/
-
+#-----------------------------------------------------------------#
 # Hong Kong Region
 #
 # Public Network
@@ -504,14 +493,15 @@ resource "aws_route_table_association" "public-ap-east-1b" {
 # Private Network
 
 
-/*
+
 resource "aws_route_table" "private_HongKong" {
   vpc_id = aws_vpc.VPC-F-HongKong-Test.id
+  provider = aws.hongkong
   
   
   route  {
       cidr_block                 = "0.0.0.0/0"
-      nat_gateway_id             = aws_nat_gateway.nat.id
+      nat_gateway_id             = aws_nat_gateway.nat_HongKong.id
       carrier_gateway_id         = ""
       destination_prefix_list_id = ""
       egress_only_gateway_id     = ""
@@ -536,16 +526,15 @@ resource "aws_route_table" "private_HongKong" {
 resource "aws_route_table_association" "private-ap-east-1a" {
   subnet_id      = aws_subnet.private-ap-east-1a.id
   route_table_id = aws_route_table.private_HongKong.id
-  provider = aws.HongKong
+  provider = aws.hongkong
 }
 
-resource "aws_route_table_association" "private-eap-east-1b" {
+resource "aws_route_table_association" "private-ap-east-1b" {
   subnet_id      = aws_subnet.private-ap-east-1b.id
   route_table_id = aws_route_table.private_HongKong.id
-  provider = aws.HongKong
+  provider = aws.hongkong
 }
 
-*/
 
 # California Region
 #
@@ -595,7 +584,7 @@ resource "aws_route_table_association" "public-us-west-1b" {
 #-----------------------------------------------#
 # Private Network
 
-/*
+
 
 resource "aws_route_table" "private_California" {
   vpc_id = aws_vpc.VPC-G-California-Test.id
@@ -604,7 +593,7 @@ resource "aws_route_table" "private_California" {
   
   route  {
       cidr_block                 = "0.0.0.0/0"
-      nat_gateway_id             = aws_nat_gateway.nat.id
+      nat_gateway_id             = aws_nat_gateway.nat_California.id
       carrier_gateway_id         = ""
       destination_prefix_list_id = ""
       egress_only_gateway_id     = ""
@@ -632,10 +621,10 @@ resource "aws_route_table_association" "private-us-west-1a" {
   provider = aws.california
 }
 
-resource "aws_route_table_association" "private-eu-west-2b" {
+resource "aws_route_table_association" "private-us-west-1b" {
   subnet_id      = aws_subnet.private-us-west-1b.id
   route_table_id = aws_route_table.private_California.id
   provider = aws.california
 }
 
-*/
+
