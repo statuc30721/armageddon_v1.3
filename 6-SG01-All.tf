@@ -1,6 +1,6 @@
 # All Security groups are in this one file. Need to find a simpler
 # means to break up the files for better viewing and troubleshooting.
-/*
+
 # Security group for Load Balancer
 # Tokyo Region
 resource "aws_security_group" "ASG01-SG01-TYO-LB01" {
@@ -103,7 +103,7 @@ resource "aws_security_group" "ASG01-SG03-TYO-servers" {
     }
 }
 
-*/
+
 
 #----------------------------------------------------#
 # New York Region
@@ -209,7 +209,7 @@ resource "aws_security_group" "ASG01-SG03-NY-servers" {
     }
 }
 
-/*
+
 #----------------------------------------------------#
 # London Region
 
@@ -728,4 +728,3 @@ resource "aws_security_group" "ASG01-SG03-CALI-servers" {
         Planet = "Arda"
     }
 }
-*/
