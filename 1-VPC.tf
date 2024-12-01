@@ -1,9 +1,17 @@
-# this  makes  vpc.id which is aws_vpc.ASG01-VPC.id
-resource "aws_vpc" "ASG01-VPC" {
-  cidr_block = "10.22.0.0/16"
+# Setup Deployment environment with a VPC
+# for each region.
+
+
+
+# New York
+
+resource "aws_vpc" "VPC-B-NewYork-Test" {
+    provider = aws.newyork
+    cidr_block = "10.21.0.0/16"
+  
 
   tags = {
-    Name = "ASG01-VPC"
+    Name = "VPC-B-NewYork-Test"
     Service = "application1"
     Owner = "Frodo"
     Planet = "Arda"

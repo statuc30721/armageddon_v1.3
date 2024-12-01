@@ -1,3 +1,4 @@
+/*
 data "aws_route53_zone" "main" {
     name    = "devlab405.click" # Domain name 
     private_zone = false
@@ -17,3 +18,4 @@ resource "aws_route53_record" "app1" {
     
   }
 }
+*/
