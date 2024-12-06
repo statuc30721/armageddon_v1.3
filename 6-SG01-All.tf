@@ -103,6 +103,46 @@ resource "aws_security_group" "ASG01-SG03-TYO-servers" {
     }
 }
 
+# Security Grouo for Tokyo Syslog Server"
+#
+
+resource "aws_security_group" "SG04-TYO-SYSLOG" {
+    name = "SG04-TYO-SYSLOG"
+    description = "Allow SSH and SYSLOG traffic to security servers."
+    vpc_id = aws_vpc.VPC-A-Tokyo-Test.id
+    provider = aws.tokyo
+
+    ingress {
+        description = "SSH"
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        description = "SYSLOG"
+        from_port = 514
+        to_port = 514
+        protocol = "UDP"
+        cidr_blocks = ["10.0.0.0/8"]
+    }
+
+
+    egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    tags = {
+        Name = "SG04-TYO-SYSLOG"
+        Service = "syslog"
+        Owner = "Frodo"
+        Planet = "Arda"
+    }
+}
 
 
 #----------------------------------------------------#
