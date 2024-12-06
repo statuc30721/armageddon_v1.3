@@ -1,7 +1,7 @@
 
 # Tokyo Region
 resource "aws_autoscaling_group" "ASG01_TYO" {
-  name_prefix           = "ASG01-Tokyo-auto-scaling-group-"
+  name_prefix           = "ASG01-Tokyo-auto-scaling-group"
   min_size              = 1
   max_size              = 5
   desired_capacity      = 2
@@ -80,10 +80,13 @@ resource "aws_autoscaling_attachment" "ASG01_TYO_attachment" {
   provider = aws.tokyo
 }
 
+
+
+
 #-------------------------------------------------------------------#
 # New York Region
 resource "aws_autoscaling_group" "ASG01_NY" {
-  name_prefix           = "ASG01-NewYork-auto-scaling-group-"
+  name_prefix           = "ASG01-NewYork-auto-scaling-group"
   min_size              = 1
   max_size              = 5
   desired_capacity      = 2
@@ -159,10 +162,13 @@ resource "aws_autoscaling_attachment" "ASG01_NY_attachment" {
   alb_target_group_arn   = aws_lb_target_group.ASG01_NY_TG01.arn
 }
 
+
+/*
+
 #-------------------------------------------------------------------#
 # London Region
 resource "aws_autoscaling_group" "ASG01_LON" {
-  name_prefix           = "ASG01-London-auto-scaling-group-"
+  name_prefix           = "ASG01-London-auto-scaling-group"
   min_size              = 1
   max_size              = 5
   desired_capacity      = 2
@@ -236,16 +242,17 @@ resource "aws_autoscaling_policy" "app1_LON_scaling_policy" {
 
 # Enabling instance scale-in protection
 resource "aws_autoscaling_attachment" "ASG01_LON_attachment" {
-  autoscaling_group_name = aws_autoscaling_group.ASG01_LON.arn
+  autoscaling_group_name = aws_autoscaling_group.ASG01_LON.name
   alb_target_group_arn   = aws_lb_target_group.ASG01_LON_TG01.arn
   provider = aws.london
 
 }
 
+
 #-------------------------------------------------------------------#
 # Sao Paulo Region
 resource "aws_autoscaling_group" "ASG01_SAO" {
-  name_prefix           = "ASG01-SaoPaulo-auto-scaling-group-"
+  name_prefix           = "ASG01-SaoPaulo-auto-scaling-group"
   min_size              = 1
   max_size              = 5
   desired_capacity      = 2
@@ -302,7 +309,7 @@ resource "aws_autoscaling_group" "ASG01_SAO" {
 # Auto Scaling Policy
 resource "aws_autoscaling_policy" "app1_SAO_scaling_policy" {
   name                   = "app1-cpu-target"
-  autoscaling_group_name = aws_autoscaling_group.ASG01_SAO.arn
+  autoscaling_group_name = aws_autoscaling_group.ASG01_SAO.name
 
   policy_type = "TargetTrackingScaling"
   estimated_instance_warmup = 120
@@ -319,15 +326,17 @@ resource "aws_autoscaling_policy" "app1_SAO_scaling_policy" {
 
 # Enabling instance scale-in protection
 resource "aws_autoscaling_attachment" "ASG01_SAO_attachment" {
-  autoscaling_group_name = aws_autoscaling_group.ASG01_SAO.arn
+  autoscaling_group_name = aws_autoscaling_group.ASG01_SAO.name
   alb_target_group_arn   = aws_lb_target_group.ASG01_SAO_TG01.arn
   provider = aws.saopaulo
 }
 
+
+
 #-------------------------------------------------------------------#
 # Australia Region
 resource "aws_autoscaling_group" "ASG01_AUS" {
-  name_prefix           = "ASG01-Australia-auto-scaling-group-"
+  name_prefix           = "ASG01-Australia-auto-scaling-group"
   min_size              = 1
   max_size              = 5
   desired_capacity      = 2
@@ -384,7 +393,7 @@ resource "aws_autoscaling_group" "ASG01_AUS" {
 # Auto Scaling Policy
 resource "aws_autoscaling_policy" "app1_AUS_scaling_policy" {
   name                   = "app1-cpu-target"
-  autoscaling_group_name = aws_autoscaling_group.ASG01_AUS.arn
+  autoscaling_group_name = aws_autoscaling_group.ASG01_AUS.name
 
   policy_type = "TargetTrackingScaling"
   estimated_instance_warmup = 120
@@ -400,16 +409,17 @@ resource "aws_autoscaling_policy" "app1_AUS_scaling_policy" {
 
 # Enabling instance scale-in protection
 resource "aws_autoscaling_attachment" "ASG01_AUS_attachment" {
-  autoscaling_group_name = aws_autoscaling_group.ASG01_AUS.arn
+  autoscaling_group_name = aws_autoscaling_group.ASG01_AUS.name
   alb_target_group_arn   = aws_lb_target_group.ASG01_AUS_TG01.arn
   provider = aws.australia
 }
 
 
+
 #-------------------------------------------------------------------#
 # Hong Kong Region
 resource "aws_autoscaling_group" "ASG01_HK" {
-  name_prefix           = "ASG01-HongKong-auto-scaling-group-"
+  name_prefix           = "ASG01-HongKong-auto-scaling-group"
   min_size              = 1
   max_size              = 5
   desired_capacity      = 2
@@ -483,15 +493,17 @@ resource "aws_autoscaling_policy" "app1_HK_scaling_policy" {
 
 # Enabling instance scale-in protection
 resource "aws_autoscaling_attachment" "ASG01_HK_attachment" {
-  autoscaling_group_name = aws_autoscaling_group.ASG01_HK.arn
+  autoscaling_group_name = aws_autoscaling_group.ASG01_HK.name
   alb_target_group_arn   = aws_lb_target_group.ASG01_HK_TG01.arn
   provider = aws.hongkong
 }
 
+
+
 #-------------------------------------------------------------------#
 # California Region
 resource "aws_autoscaling_group" "ASG01_CALI" {
-  name_prefix           = "ASG01-California-auto-scaling-group-"
+  name_prefix           = "ASG01-California-auto-scaling-group"
   min_size              = 1
   max_size              = 5
   desired_capacity      = 2
@@ -548,7 +560,7 @@ resource "aws_autoscaling_group" "ASG01_CALI" {
 # Auto Scaling Policy
 resource "aws_autoscaling_policy" "app1_CALI_scaling_policy" {
   name                   = "app1-cpu-target"
-  autoscaling_group_name = aws_autoscaling_group.ASG01_CALI.arn
+  autoscaling_group_name = aws_autoscaling_group.ASG01_CALI.name
 
   policy_type = "TargetTrackingScaling"
   estimated_instance_warmup = 120
@@ -565,7 +577,9 @@ resource "aws_autoscaling_policy" "app1_CALI_scaling_policy" {
 
 # Enabling instance scale-in protection
 resource "aws_autoscaling_attachment" "ASG01_CALI_attachment" {
-  autoscaling_group_name = aws_autoscaling_group.ASG01_CALI.arn
+  autoscaling_group_name = aws_autoscaling_group.ASG01_CALI.name
   alb_target_group_arn   = aws_lb_target_group.ASG01_CALI_TG01.arn
   provider = aws.california
 }
+
+*/

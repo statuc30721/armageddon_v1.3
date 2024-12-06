@@ -193,7 +193,8 @@ resource "aws_launch_template" "app1_HongKong_LT" {
     name_prefix = "app1_HK_LT"
     #image_id = data.aws_ami.latest-amazon-linux-image.id
     image_id = "ami-06f707739f2271995"
-    instance_type = "t2.micro"
+    # Hong Kong does not have the t2.micro in that region as of 6 December 2024.
+    instance_type = "t3.micro"
     vpc_security_group_ids = [aws_security_group.ASG01-SG03-HongKong-servers.id]
     key_name = "linux_appserver_key"
     provider = aws.hongkong
